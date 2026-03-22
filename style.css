@@ -11,6 +11,10 @@ html, body {
     scroll-behavior: smooth;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 main {
     display: flex;
     flex-direction: column;
@@ -31,7 +35,10 @@ nav {
     font-weight: bold;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
     justify-content: space-around;
+    align-items: center;
     z-index: 1000;
 }
 
@@ -48,6 +55,7 @@ nav a:hover {
 .links {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     align-items: center;
     margin-right: 20px;
     font-weight: normal;
@@ -56,6 +64,7 @@ nav a:hover {
 .links a {
     margin-left: 20px;
     font-size: 0.9em;
+    white-space: nowrap;
 }
 
 .nav-icon {
@@ -68,7 +77,8 @@ nav a:hover {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding-left: 50px;
+    padding: 0 50px;
+    gap: 20px;
 }
 
 .intro h1 {
@@ -76,8 +86,8 @@ nav a:hover {
 }
 
 .intro img {
-    width: 500px;
-    height: 500px;
+    width: min(500px, 90vw);
+    height: auto;
 }
 
 footer {
@@ -85,6 +95,7 @@ footer {
     align-items: center;
     border-top: 2px solid #686974;
     justify-content: space-between;
+    flex-wrap: wrap;
     background-color: #000000;
     bottom: 0;
 }
@@ -200,7 +211,7 @@ ul {
 }
 
 .text p {
-    max-width: 50dvw;
+    max-width: min(780px, 85dvw);
 }
 
 .text a {
@@ -220,6 +231,11 @@ ul {
 
 .text img {
     border-radius: 10px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
 }
 
 #content {
@@ -259,6 +275,29 @@ ul {
 }
 
 @media (max-width: 650px) {
+    nav {
+        justify-content: center;
+        padding: 8px 10px;
+    }
+
+    nav > a {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .links {
+        width: 100%;
+        justify-content: center;
+        margin: 0;
+        gap: 8px 12px;
+    }
+
+    .links a {
+        margin-left: 0;
+        font-size: 0.95em;
+    }
+
     .intro, .our-people, .our-projects, .images {
         display: flex;
         flex-direction: column;
@@ -289,6 +328,16 @@ ul {
     }
 
     .text p {
-        max-width: 80dvw;
+        max-width: 92dvw;
+    }
+
+    .text ul {
+        max-width: 92dvw;
+        padding-left: 18px;
+    }
+
+    footer {
+        justify-content: center;
+        text-align: center;
     }
 }

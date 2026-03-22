@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Redirect</title>
+</head>
+<body>
+    <p>Redirecting...</p>
+    <script>
+        function readSession() {
+            try {
+                const raw = sessionStorage.getItem("cxp.portal.session");
+                return raw ? JSON.parse(raw) : null;
+            } catch (err) {
+                return null;
+            }
+        }
+
+        const session = readSession();
+        if (!session || !session.role) {
+            window.location.replace("login.html");
+        } else if (session.role === "admin") {
+            window.location.replace("admin-portal.html");
+        } else {
+            window.location.replace("member-portal.html");
+        }
+    </script>
+</body>
+</html>

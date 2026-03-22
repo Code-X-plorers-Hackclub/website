@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Club Members Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-container {
+            background: white;
+            padding: 28px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            width: 100%;
+            max-width: 360px;
+        }
+
+        .login-container h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+            font-size: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 15px;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #222;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            background: #222;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .footer-text {
+            text-align: center;
+            margin-top: 16px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .footer-text a {
+            color: #222;
+            text-decoration: none;
+        }
+
+        .site-links {
+            margin-top: 12px;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        .site-links a {
+            color: #222;
+            text-decoration: none;
+            margin: 0 6px;
+            font-size: 14px;
+        }
+
+        .error-text {
+            color: #b91c1c;
+            font-size: 13px;
+            text-align: center;
+            margin-top: 10px;
+            min-height: 16px;
+        }
+
+        .footer-text a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1>Code-X-plorers Hackclub</h1>
+        <h1>Member/Admins portal Login</h1>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit" class="login-btn">Login</button>
+            <p class="error-text" id="loginError"></p>
+        </form>
+        <div class="footer-text">
+            Don't have an account? <a href="join.html">Sign up here</a>
+        </div>
+        <div class="site-links">
+            <a href="index.html">Home</a>
+        </div>
+    </div>
+
+    <script>
+        const ACCOUNTS_KEY = 'cxp.portal.accounts';
+        const DEFAULT_ACCOUNTS = [
+            { email: 'arvind@codexplorershc.me', role: 'admin', password: 'Admin@123', displayName: 'Arvind Techguy', designation: 'Leader', avatar: 'https://hc-cdn.hel1.your-objectstorage.com/s/v3/83d759e3c25ebbe914ced379980ab51143ea75b1_chatgpt_image_sep_19__2025__05_50_55_pm.png' },
+            { email: 'kamalesh@codexplorershc.me', role: 'admin', password: 'Admin@123', displayName: 'Kamalesh', designation: 'Co-Leader', avatar: 'https://hc-cdn.hel1.your-objectstorage.com/s/v3/a785a352683cb05648ad13845c2941e606d01dd8_553596494_779311361573325_7890235355644139425_n.jpg' },
+            { email: 'bhavesh@codexplorershc.me', role: 'admin', password: 'Admin@123', displayName: 'Bhavesh', designation: 'Social Conduct Admin', avatar: 'https://hc-cdn.hel1.your-objectstorage.com/s/v3/d367bbcd3e7871be1bcf0a02010afb05c6bb9e8b_whatsapp_image_2025-10-01_at_16.52.11_63221fdd.jpg' },
+            { email: 'stephony@codexplorershc.me', role: 'admin', password: 'Admin@123', displayName: 'Stephy', designation: 'Event Conduct Admin', avatar: 'https://hc-cdn.hel1.your-objectstorage.com/s/v3/ae36d5069ec7f36655f20dd97ee9d58a1e77b90e_503569323_18030344852677999_6604065349542427199_n.jpg' },
+            { email: 'hareeswar@codexplorershc.me', role: 'admin', password: 'Admin@123', displayName: 'Hareeswar', designation: 'Team Conduct Admin', avatar: 'https://hc-cdn.hel1.your-objectstorage.com/s/v3/d7573fe98ba53cef021b2a3c4e5d6115a6ad9745_hareeshwar.png.png' },
+            { email: 'laya@codexplorershc.me', role: 'admin', password: 'Admin@123', displayName: 'Layatharini', designation: 'Editorial Conduct Admin', avatar: 'https://hc-cdn.hel1.your-objectstorage.com/s/v3/d7573fe98ba53cef021b2a3c4e5d6115a6ad9745_hareeshwar.png.png' }
+        ];
+
+        function normalizeEmail(email) {
+            return (email || '').trim().toLowerCase();
+        }
+
+        function dedupeByEmail(accounts) {
+            const map = new Map();
+            accounts.forEach(function(account) {
+                const key = normalizeEmail(account.email);
+                if (!key) {
+                    return;
+                }
+                map.set(key, {
+                    email: key,
+                    role: account.role === 'admin' ? 'admin' : 'member',
+                    password: String(account.password || ''),
+                    displayName: String(account.displayName || ''),
+                    designation: String(account.designation || ''),
+                    avatar: String(account.avatar || '')
+                });
+            });
+            return Array.from(map.values());
+        }
+
+        function getAllocatedAccounts() {
+            let parsed = [];
+            try {
+                const raw = localStorage.getItem(ACCOUNTS_KEY);
+                parsed = raw ? JSON.parse(raw) : [];
+                if (!Array.isArray(parsed)) {
+                    parsed = [];
+                }
+            } catch (err) {
+                parsed = [];
+            }
+
+            const merged = dedupeByEmail(DEFAULT_ACCOUNTS.concat(parsed));
+            localStorage.setItem(ACCOUNTS_KEY, JSON.stringify(merged));
+            return merged;
+        }
+
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = normalizeEmail(document.getElementById('email').value);
+            const password = document.getElementById('password').value;
+            const loginError = document.getElementById('loginError');
+            loginError.textContent = '';
+
+            const accounts = getAllocatedAccounts();
+            const matched = accounts.find(function(account) {
+                return account.email === email;
+            });
+
+            if (!matched) {
+                loginError.textContent = 'Account not allocated yet. Contact leader/co-leader.';
+                return;
+            }
+
+            if (String(matched.password || '') !== password) {
+                loginError.textContent = 'Invalid password.';
+                return;
+            }
+
+            const role = matched.role;
+
+            sessionStorage.setItem('cxp.portal.session', JSON.stringify({
+                email: email,
+                role: role,
+                loginAt: new Date().toISOString()
+            }));
+
+            window.location.href = role === 'admin' ? 'admin-portal.html' : 'member-portal.html';
+        });
+    </script>
+</body>
+</html>
