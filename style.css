@@ -19,6 +19,7 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
     flex: 1;
     min-height: 100dvh;
     overflow-x: hidden;
@@ -28,6 +29,7 @@ nav {
     background-color: #000000;
     position: sticky;
     top: 0;
+    width: 100%;
     box-shadow: 0 4px 2px rgba(0, 0, 0, 0.1);
     text-decoration: none;
     padding-left: 10px;
@@ -56,6 +58,7 @@ nav a:hover {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    gap: 8px;
     align-items: center;
     margin-right: 20px;
     font-weight: normal;
@@ -167,6 +170,7 @@ svg {
 
 .people, .projects {
     max-width: 300px;
+    width: min(320px, 100%);
     margin: 10px;
     padding: 10px;
     text-align: center;
@@ -175,7 +179,9 @@ svg {
 .our-people, .our-projects {
     display: flex;
     flex-direction: row;
-    justify-content: center; 
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
 }
 
 .img-title svg {
@@ -214,6 +220,11 @@ ul {
     max-width: min(780px, 85dvw);
 }
 
+.text {
+    width: min(960px, 100%);
+    padding: 0 16px;
+}
+
 .text a {
     font-size: medium;
     font-weight: normal;
@@ -246,6 +257,9 @@ img {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
     text-align: center;
 }
 
@@ -274,44 +288,93 @@ img {
     background-color: #619cfa;
 }
 
+@media (max-width: 900px) {
+    nav {
+        padding: 8px 10px;
+    }
+
+    .links {
+        margin-right: 0;
+    }
+
+    .links a {
+        margin-left: 0;
+    }
+}
+
 @media (max-width: 650px) {
     nav {
         justify-content: center;
+        align-items: stretch;
         padding: 8px 10px;
     }
 
     nav > a {
+        display: flex;
         width: 100%;
         justify-content: center;
+        gap: 8px;
         text-align: center;
     }
 
+    nav > a p {
+        margin: 0;
+        font-size: 0.95em;
+        line-height: 1.3;
+    }
+
     .links {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         width: 100%;
-        justify-content: center;
+        justify-content: stretch;
         margin: 0;
         gap: 8px 12px;
     }
 
     .links a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 40px;
+        padding: 6px 8px;
         margin-left: 0;
         font-size: 0.95em;
+        border: 1px solid #35374e;
+        border-radius: 8px;
+        background-color: #171823;
+    }
+
+    .links a.join {
+        border: 0;
+    }
+
+    .links a svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    .nav-icon {
+        width: 42px;
+        height: 42px;
     }
 
     .intro, .our-people, .our-projects, .images {
         display: flex;
         flex-direction: column;
-        padding: 20px;
+        padding: 16px;
         align-items: center;
     }
     
     .intro img {
-        height: 80dvw;
-        width: 80dvw;
+        width: min(78dvw, 320px);
+        height: auto;
     }
 
     .intro h1 {
-        font-size: 2em;
+        font-size: clamp(1.7rem, 8vw, 2.2rem);
+        text-align: center;
+        line-height: 1.2;
     }
 
     .redirect-button {
@@ -334,6 +397,12 @@ img {
     .text ul {
         max-width: 92dvw;
         padding-left: 18px;
+    }
+
+    .projects img,
+    .people img {
+        width: min(76dvw, 260px);
+        height: auto;
     }
 
     footer {

@@ -269,8 +269,23 @@
         .status { color: #166534; font-size: 13px; min-height: 16px; margin-top: 6px; }
 
         @media (max-width: 860px) {
-            .kpi, .wide, .half { grid-column: span 12; }
+            .kpi, .wide, .half, .announcement-column, .events-column { grid-column: span 12; }
             .topbar { flex-direction: column; align-items: flex-start; }
+            .actions { width: 100%; flex-wrap: wrap; }
+            .actions .btn { flex: 1; text-align: center; }
+        }
+
+        @media (max-width: 520px) {
+            .wrap { width: 96vw; margin: 14px auto; }
+            .panel { padding: 10px; }
+            .title-logo { width: 56px; height: 56px; }
+            .tabs { display: grid; grid-template-columns: 1fr 1fr; }
+            .tab { width: 100%; text-align: center; padding: 10px 8px; }
+            .task-item { flex-wrap: wrap; align-items: flex-start; }
+            .task-item .task-text-input { width: 100%; }
+            .task-remove-btn { width: 100%; }
+            .task-editor-row { flex-direction: column; }
+            .task-editor-row .btn { width: 100%; }
         }
     </style>
 </head>
