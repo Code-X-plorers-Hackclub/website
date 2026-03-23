@@ -184,6 +184,21 @@ svg {
     gap: 10px;
 }
 
+.admins-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(220px, 1fr));
+    gap: 16px;
+    width: min(1100px, 100%);
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+.admins-grid .people {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+}
+
 .img-title svg {
     fill: black;
 }
@@ -300,6 +315,10 @@ img {
     .links a {
         margin-left: 0;
     }
+
+    .admins-grid {
+        grid-template-columns: repeat(2, minmax(220px, 1fr));
+    }
 }
 
 @media (max-width: 650px) {
@@ -364,6 +383,14 @@ img {
         flex-direction: column;
         padding: 16px;
         align-items: center;
+    }
+
+    .admins-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        width: 100%;
+        gap: 12px;
+        padding: 0 12px;
     }
     
     .intro img {
