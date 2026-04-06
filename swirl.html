@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Showcase</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #f5f5f5;
+        }
+
+        header {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.03);
+        }
+
+        .card iframe {
+            width: 100%;
+            height: 200px;
+            border: none;
+        }
+
+        .card-content {
+            padding: 15px;
+        }
+
+        .card-content h3 {
+            margin: 0 0 10px;
+        }
+
+        .card-content p {
+            color: #555;
+            font-size: 14px;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 12px;
+            background: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .btn:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>My Website Showcase</h1>
+    <p>Collection of my projects</p>
+</header>
+
+<div class="container">
+
+    <!-- Website 1 -->
+    <div class="card">
+        <iframe src="https://bhaveshsugunesn.github.io/Swirl/"></iframe>
+        <div class="card-content">
+            <h3>Bhavesh S</h3>
+            <p>About BMW m4</p>
+            <a href="https://bhaveshsugunesn.github.io/Swirl/" target="_blank" class="btn">Visit</a>
+        </div>
+    </div>
+
+    <!-- Website 2 -->
+    <div class="card">
+        <iframe src="https://cybertech-9906.github.io/Sameera-/"></iframe>
+        <div class="card-content">
+            <h3>Sameera</h3>
+            <p>About Chennai Super Kings Cricket Team</p>
+            <a href="https://cybertech-9906.github.io/Sameera-/" target="_blank" class="btn">Visit</a>
+        </div>
+    </div>
+
+    <!-- Website 3 -->
+    <div class="card">
+        <iframe src="https://mituzen5.github.io/RCB-X-PUMA/index.html"></iframe>
+        <div class="card-content">
+            <h3>Vasan Bhuvanesh</h3>
+            <p>RCB X Puma</p>
+            <a href="https://mituzen5.github.io/RCB-X-PUMA/index.html" target="_blank" class="btn">Visit</a>
+        </div>
+    </div>
+
+    <!-- Website 4 -->
+    <div class="card">
+        <iframe src="https://vishal18701870-vis.github.io/RCB/"></iframe>
+        <div class="card-content">
+            <h3>Vishal</h3>
+            <p>RCB Cricket Team</p>
+            <a href="https://vishal18701870-vis.github.io/RCB/" target="_blank" class="btn">Visit</a>
+        </div>
+
+    </div>
+<!-- Website 5 -->
+    <div class="card">
+        <iframe src="https://jaikrishna2008.github.io/csk/index.html"></iframe>
+        <div class="card-content">
+            <h3>Jai Krishna</h3>
+            <p>RCB Cricket Team</p>
+            <a href="https://jaikrishna2008.github.io/csk/index.html" target="_blank" class="btn">Visit</a>
+        </div>
+    </div>
+
+    <!-- Website 6 -->
+    <div class="card">
+        <iframe src="https://kalai114726-creator.github.io/CSK/"></iframe>
+        <div class="card-content">
+            <h3>Kalai</h3>
+            <p>CSK Cricket Team</p>
+            <a href="https://kalai114726-creator.github.io/CSK/" target="_blank" class="btn">Visit</a>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
